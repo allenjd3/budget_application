@@ -4,10 +4,10 @@ one:
   name: MyString
   planned: 1
   user: one
-  category_belongs_to: MyString
+  category: one
 
 two:
   name: MyString
   planned: 1
   user: two
-  category_belongs_to: MyString
+  category: two

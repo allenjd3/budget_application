@@ -14,7 +14,7 @@ class ItemsTest < ApplicationSystemTestCase
     visit items_url
     click_on "New Item"
 
-    fill_in "Category belongs to", with: @item.category_belongs_to
+    fill_in "Category", with: @item.category_id
     fill_in "Name", with: @item.name
     fill_in "Planned", with: @item.planned
     fill_in "User", with: @item.user_id
@@ -28,7 +28,7 @@ class ItemsTest < ApplicationSystemTestCase
     visit items_url
     click_on "Edit", match: :first
 
-    fill_in "Category belongs to", with: @item.category_belongs_to
+    fill_in "Category", with: @item.category_id
     fill_in "Name", with: @item.name
     fill_in "Planned", with: @item.planned
     fill_in "User", with: @item.user_id

@@ -4,7 +4,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :planned
       t.belongs_to :user, null: false, foreign_key: true
-      t.string :category_belongs_to
+      t.belongs_to :category, null: false, foreign_key: true
 
       t.timestamps
     end

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Planned:</strong>
+  <%= @item.planned %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item.user_id %>
+</p>
+
+<p>
+  <strong>Category belongs to:</strong>
+  <%= @item.category_belongs_to %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

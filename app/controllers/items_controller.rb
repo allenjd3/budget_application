@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /items
   # GET /items.json
@@ -14,17 +15,23 @@ class ItemsController < ApplicationController
 
   # GET /items/new
   def new
+    @categories = Category.all
     @item = Item.new
   end
 
   # GET /items/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /items
   # POST /items.json
   def create
-    @item = Item.new(item_params)
+    @item = Item.new()
+    @item.name = params[:item][:name]
+    @item.planned = params[:item][:planned]
+    @item.category_id = params[:item][:category_id]
+    @item.user_id = current_user.id
 
     respond_to do |format|
       if @item.save
@@ -69,6 +76,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :planned, :user_id, :category_id)
+      params.require(:item).permit(:name, :planned, :category_id)
     end
 end

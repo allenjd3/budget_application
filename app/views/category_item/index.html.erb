@@ -1,0 +1,15 @@
+<div class="container">
+<% @categories.each do |category| %>
+<div class="category">
+        <h2><%= category.name %></h2>
+        <% category.items.each do |item| %>
+        <div class="card font-weight-bold my-2">
+                <div class="card-body d-flex">
+                        <div class="flex-grow-1"><%= link_to item.name, item %></div>
+                        <div class="text-info mr-2">$<%= item.planned %></div>
+                        <div class="text-danger">$24.50</div>
+                </div>
+        </div>
+        <% end %>
+</div>
+<% end %>

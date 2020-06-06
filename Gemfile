@@ -25,6 +25,8 @@ gem 'devise'
 
 gem 'bootstrap'
 
+gem 'jquery-rails'
+
 gem 'money-rails'
 
 # Use Active Storage variant

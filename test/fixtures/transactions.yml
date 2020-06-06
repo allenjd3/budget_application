@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  user: one
+  item: one
+  spent: 
+  spent_date: 2020-05-31 20:08:08
+
+two:
+  name: MyString
+  user: two
+  item: two
+  spent: 
+  spent_date: 2020-05-31 20:08:08

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @paycheck.name %>
+</p>
+
+<p>
+  <strong>Payday:</strong>
+  <%= @paycheck.payday %>
+</p>
+
+<p>
+  <strong>Payday date:</strong>
+  <%= @paycheck.payday_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @paycheck.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_paycheck_path(@paycheck) %> |
+<%= link_to 'Back', paychecks_path %>

@@ -29,13 +29,18 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new()
     @item.name = params[:item][:name]
+    @month = Month.where(user_id: current_user.id, month: params[:item][:item_month], year: params[:item][:item_year]).first
+    @item.month_id = @month.id
     @item.planned = params[:item][:planned]
     @item.category_id = params[:item][:category_id]
     @item.user_id = current_user.id
 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to @item, notice: 'Item was successfully created.' }
+        format.html { 
+          flash[:notice]="Successfully Created New Budget Item"
+          redirect_back fallback_location: '/category_items' 
+        }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -49,7 +54,10 @@ class ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(item_params)
-        format.html { redirect_to @item, notice: 'Item was successfully updated.' }
+        format.html { 
+          flash[:notice]="Successfully Updated the Budget Item"
+          redirect_back fallback_location: '/category_items' 
+        }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -63,7 +71,7 @@ class ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      format.html { redirect_to items_url, notice: 'Item was successfully destroyed.' }
+      format.html { redirect_to "/cp", notice: 'Item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -76,6 +84,6 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :planned, :category_id)
+      params.require(:item).permit(:name, :planned, :category_id, :item_month, :item_year)
     end
 end

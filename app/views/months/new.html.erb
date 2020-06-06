@@ -1,0 +1,12 @@
+<div class="mx-auto mt-5" style="max-width: 750px;">
+    <div class="card">
+        <div class="card-body position-relative">
+            <h2 class="mb-5">Create a New Budget Month</h2>
+
+            <%= render 'form', month: @month %>
+
+            <%= link_to 'Back', months_path, class: "btn btn-warning", style: "position: absolute; bottom: 1.25rem; right: 1.25rem;" %>
+        </div>
+
+    </div>
+</div>

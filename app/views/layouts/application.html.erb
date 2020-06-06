@@ -10,10 +10,33 @@
   </head>
 
   <body>
-  
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
     <%= yield %>
+
+  <% if notice %>
+  <div id="notice" class="alert alert-info" style="position: fixed; bottom: 16px; right: 16px;"><%= notice %></div>
+  <% end %>
+  <% if alert %>
+  <div id="alert" class="alert alert-warning" style="position: fixed; bottom: 16px; right:16px;"><%= alert %></div>
+  <% end %>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(event){
+
+        var notice = document.getElementById("notice");
+        var alert = document.getElementById("alert");
+
+        if(notice) {
+          setTimeout(function(){
+            notice.remove();
+          }, 5000);
+        }
+        if(alert) {
+          setTimeout(function(){
+            alert.remove();
+          }, 5000);
+        }
+      });
+    
+
+    </script>
   </body>
 </html>

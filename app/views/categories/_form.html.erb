@@ -15,8 +15,13 @@
     <%= form.label :name %>
     <%= form.text_field :name, class: "form-control"%>
   </div>
+  <%= form.hidden_field :category_month, value: params[:month] %>
+  <%= form.hidden_field :category_year, value: params[:year] %>
 
   <div class="actions">
+    <% if(category.persisted?) %>
+      <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
     <%= form.submit class: "btn btn-dark" %>
   </div>
 <% end %>

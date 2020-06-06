@@ -26,12 +26,17 @@ class CategoriesController < ApplicationController
   # POST /categories.json
   def create
     @category = Category.new()
+    @month = Month.where(user_id: current_user.id, month: params[:category][:category_month], year: params[:category][:category_year]).first
     @category.name = params[:category][:name]
+    @category.month_id = @month.id
     @category.user_id = current_user.id
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'Category was successfully created.' }
+        format.html { 
+          flash[:notice]="Successfully Created a New Category"
+          redirect_back fallback_location: '/category_items' 
+        }
         format.json { render :show, status: :created, location: @category }
       else
         format.html { render :new }
@@ -44,11 +49,16 @@ class CategoriesController < ApplicationController
   # PATCH/PUT /categories/1.json
   def update
     respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'Category was successfully updated.' }
+    @month = Month.where(user_id: current_user.id, month: params[:category][:category_month], year: params[:category][:category_year]).first
+    @category = Category.where(user_id: current_user.id, id: params[:id]).take
+    if (@category.update(name: params[:category][:name]))
+        format.html { 
+          flash[:notice]="Successfully Updated Category"
+          redirect_back fallback_location: '/cp'
+        }
         format.json { render :show, status: :ok, location: @category }
       else
-        format.html { render :edit }
+        format.html { redirect_back fallback_location '/cp'}
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
@@ -72,6 +82,6 @@ class CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:name)
+      params.require(:category).permit(:name, :category_month, :category_year)
     end
 end

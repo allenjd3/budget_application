@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Paychecks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Payday</th>
+      <th>Payday date</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @paychecks.each do |paycheck| %>
+      <tr>
+        <td><%= paycheck.name %></td>
+        <td><%= paycheck.payday %></td>
+        <td><%= paycheck.payday_date %></td>
+        <td><%= paycheck.user_id %></td>
+        <td><%= link_to 'Show', paycheck %></td>
+        <td><%= link_to 'Edit', edit_paycheck_path(paycheck) %></td>
+        <td><%= link_to 'Destroy', paycheck, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Paycheck', new_paycheck_path %>

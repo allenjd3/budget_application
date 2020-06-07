@@ -2,26 +2,6 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /categories
-  # GET /categories.json
-  def index
-    @categories = Category.all
-  end
-
-  # GET /categories/1
-  # GET /categories/1.json
-  def show
-  end
-
-  # GET /categories/new
-  def new
-    @category = Category.new
-  end
-
-  # GET /categories/1/edit
-  def edit
-  end
-
   # POST /categories
   # POST /categories.json
   def create
@@ -35,11 +15,11 @@ class CategoriesController < ApplicationController
       if @category.save
         format.html { 
           flash[:notice]="Successfully Created a New Category"
-          redirect_back fallback_location: '/category_items' 
+          redirect_back fallback_location: '/cp' 
         }
         format.json { render :show, status: :created, location: @category }
       else
-        format.html { render :new }
+        format.html { redirect_back fallback_location: '/cp' }
         format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end

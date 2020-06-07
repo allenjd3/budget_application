@@ -14,6 +14,8 @@ class CategoryItemController < ApplicationController
       @transactions = @month.transactions.order(id: :desc).limit(5)
       @transaction_spent = @month.transactions.sum(:spent_cents)
       @items = @month.items
+      @paychecks = @month.paychecks
+      @paychecks_payday = @month.paychecks.sum(:payday_cents)
       @categories = @month.categories.includes(items: :transactions)
 
     end

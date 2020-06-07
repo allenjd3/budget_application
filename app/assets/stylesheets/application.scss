@@ -5,3 +5,17 @@
     padding: 20px;
     margin: 10px 0px;
 }
+
+.category-title {
+    a {
+        color: black;
+        &:hover {
+            color: black;
+        }
+        &:visited {
+            color: black;
+        }
+    }
+
+
+}

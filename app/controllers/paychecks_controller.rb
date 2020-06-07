@@ -25,14 +25,21 @@ class PaychecksController < ApplicationController
   # POST /paychecks
   # POST /paychecks.json
   def create
-    @paycheck = Paycheck.new(paycheck_params)
+    @paycheck = Paycheck.new()
+
+    @paycheck.name = params[:paycheck][:name]
+    @month = Month.where(user_id: current_user.id, month: params[:paycheck][:paycheck_month], year: params[:paycheck][:paycheck_year]).first
+    @paycheck.payday = params[:paycheck][:payday]
+    @paycheck.payday_date = params[:paycheck][:payday_date]
+    @paycheck.user_id = current_user.id
+    @paycheck.month_id = @month.id
 
     respond_to do |format|
       if @paycheck.save
-        format.html { redirect_to @paycheck, notice: 'Paycheck was successfully created.' }
+        format.html { redirect_to "/cp", notice: 'Paycheck was successfully created.' }
         format.json { render :show, status: :created, location: @paycheck }
       else
-        format.html { render :new }
+        format.html { redirect_back fallback_location: "/cp" }
         format.json { render json: @paycheck.errors, status: :unprocessable_entity }
       end
     end
@@ -42,11 +49,11 @@ class PaychecksController < ApplicationController
   # PATCH/PUT /paychecks/1.json
   def update
     respond_to do |format|
-      if @paycheck.update(paycheck_params)
-        format.html { redirect_to @paycheck, notice: 'Paycheck was successfully updated.' }
+      if @paycheck.update(name: params[:paycheck][:name], payday: params[:paycheck][:payday], payday_date: params[:paycheck][:payday_date])
+        format.html { redirect_back fallback_location: "/cp", notice: 'Paycheck was successfully updated.' }
         format.json { render :show, status: :ok, location: @paycheck }
       else
-        format.html { render :edit }
+        format.html { redirect_back fallback_location: "/cp" }
         format.json { render json: @paycheck.errors, status: :unprocessable_entity }
       end
     end

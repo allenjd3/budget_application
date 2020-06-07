@@ -19,9 +19,9 @@
   <%= form.hidden_field :category_year, value: params[:year] %>
 
   <div class="actions">
+    <%= form.submit class: "btn btn-dark float-right" %>
     <% if(category.persisted?) %>
-      <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right mr-2" %>
     <% end %>
-    <%= form.submit class: "btn btn-dark" %>
   </div>
 <% end %>

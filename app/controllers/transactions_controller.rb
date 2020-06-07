@@ -2,27 +2,11 @@ class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /transactions
-  # GET /transactions.json
-  def index
-    @transactions = Transaction.all
-  end
-
-  # GET /transactions/1
-  # GET /transactions/1.json
-  def show
-  end
 
   # GET /transactions/new
   def new
     @items = Item.all
     @transaction = Transaction.new
-  end
-
-  # GET /transactions/1/edit
-  def edit
-    @items = Item.all
-
   end
 
   # POST /transactions
@@ -58,11 +42,11 @@ class TransactionsController < ApplicationController
   # PATCH/PUT /transactions/1.json
   def update
     respond_to do |format|
-      if @transaction.update(transaction_params)
-        format.html { redirect_to @transaction, notice: 'Transaction was successfully updated.' }
+      if @transaction.update(name: params[:transaction][:name], item_id: params[:transaction][:item_id], spent: params[:transaction][:spent], spent_date: params[:transaction][:spent_date])
+        format.html { redirect_to "/cp", notice: 'Transaction was successfully updated.' }
         format.json { render :show, status: :ok, location: @transaction }
       else
-        format.html { render :edit }
+        format.html { redirect_back fallback_location: "/cp" }
         format.json { render json: @transaction.errors, status: :unprocessable_entity }
       end
     end
@@ -73,7 +57,7 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     respond_to do |format|
-      format.html { redirect_to transactions_url, notice: 'Transaction was successfully destroyed.' }
+      format.html { redirect_back fallback_location: "/cp", notice: 'Transaction was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

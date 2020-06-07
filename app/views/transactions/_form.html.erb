@@ -34,6 +34,9 @@
   <%= form.hidden_field :transaction_year, value: params[:year] %>
 
   <div class="actions">
-    <%= form.submit class:"btn btn-dark" %>
+    <%= form.submit class:"btn btn-dark float-right" %>
+    <% if(transaction.persisted?) %>
+      <%= link_to 'Delete', transaction, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger float-right mr-2" %>
+    <% end %>
   </div>
 <% end %>

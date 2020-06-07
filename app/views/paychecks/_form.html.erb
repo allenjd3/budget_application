@@ -11,27 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :payday %>
-    <%= form.text_field :payday %>
+    <%= form.number_field :payday, step: 0.01, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <%= form.hidden_field :paycheck_month, value: params[:month] %>
+  <%= form.hidden_field :paycheck_year, value: params[:year] %>
+
+  <div class="form-group">
     <%= form.label :payday_date %>
-    <%= form.datetime_select :payday_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.datetime_select :payday_date, class: "form-control" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-dark float-right"%>
   </div>
 <% end %>

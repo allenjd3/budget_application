@@ -1,4 +1,4 @@
-<div class="modal fade" id="modalitem<%= item.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="modaltransaction<%= transaction.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,8 +8,8 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= item.name %> 
-        <%= render partial: 'items/form', locals: { item: item } %>
+        This is my amazing modal of name <%= transaction.name %> 
+        <%= render partial: 'transactions/form', locals: { transaction: transaction } %>
         <button type="button" class="btn btn-secondary float-left" data-dismiss="modal">Close</button>
       </div>
     </div>

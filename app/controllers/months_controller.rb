@@ -2,27 +2,12 @@ class MonthsController < ApplicationController
   before_action :set_month, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /months
-  # GET /months.json
-  def index
-    @months = Month.all
-  end
-
-  # GET /months/1
-  # GET /months/1.json
-  def show
-  end
 
   # GET /months/new
   def new
     @month = Month.new
   end
 
-  # GET /months/1/edit
-  def edit
-  end
-
-  # POST /months
   # POST /months.json
   def create
     @old_month = Month.order(id: :desc).take
@@ -61,10 +46,10 @@ class MonthsController < ApplicationController
   def update
     respond_to do |format|
       if @month.update(month_params)
-        format.html { redirect_to @month, notice: 'Month was successfully updated.' }
+        format.html { redirect_to "/month/" + @month.month + "/year/" + @month.year.to_s, notice: 'Month was successfully updated.' }
         format.json { render :show, status: :ok, location: @month }
       else
-        format.html { render :edit }
+        format.html { redirect_back  fallback_location: '/cp' }
         format.json { render json: @month.errors, status: :unprocessable_entity }
       end
     end
@@ -75,7 +60,7 @@ class MonthsController < ApplicationController
   def destroy
     @month.destroy
     respond_to do |format|
-      format.html { redirect_to months_url, notice: 'Month was successfully destroyed.' }
+      format.html { redirect_to "/cp", notice: 'Month was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

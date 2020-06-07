@@ -2,16 +2,6 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
-  # GET /items
-  # GET /items.json
-  def index
-    @items = Item.all
-  end
-
-  # GET /items/1
-  # GET /items/1.json
-  def show
-  end
 
   # GET /items/new
   def new
@@ -19,10 +9,6 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  # GET /items/1/edit
-  def edit
-    @categories = Category.all
-  end
 
   # POST /items
   # POST /items.json
@@ -39,11 +25,11 @@ class ItemsController < ApplicationController
       if @item.save
         format.html { 
           flash[:notice]="Successfully Created New Budget Item"
-          redirect_back fallback_location: '/category_items' 
+          redirect_back fallback_location: '/cp' 
         }
         format.json { render :show, status: :created, location: @item }
       else
-        format.html { render :new }
+        format.html { redirect_to '/cp' }
         format.json { render json: @item.errors, status: :unprocessable_entity }
       end
     end
@@ -53,10 +39,10 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1.json
   def update
     respond_to do |format|
-      if @item.update(item_params)
+      if @item.update(name: params[:item][:name], planned: params[:item][:planned], category_id: params[:item][:category_id])
         format.html { 
           flash[:notice]="Successfully Updated the Budget Item"
-          redirect_back fallback_location: '/category_items' 
+          redirect_back fallback_location: '/cp' 
         }
         format.json { render :show, status: :ok, location: @item }
       else

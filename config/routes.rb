@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :csv_uploaders
   resources :months, only: [:new, :create, :update, :destroy]
   resources :paychecks
   resources :transactions, only: [:create, :update, :destroy]

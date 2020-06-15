@@ -1,0 +1,11 @@
+<div class="card mx-auto my-5 shadow" style="max-width: 750px;">
+    <div class="card-header bg-dark text-white">
+        <h1>New Csv Uploader</h1>
+    </div>
+
+    <div class="card-body">
+        <%= render 'form', csv_uploader: @csv_uploader %>
+
+        <%= link_to 'Back', csv_uploaders_path %>
+    </div>
+</div>

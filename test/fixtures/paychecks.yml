@@ -2,12 +2,14 @@
 
 one:
   name: MyString
-  payday: 
+  payday_cents: 1 
   payday_date: 2020-06-02 20:38:49
   user: one
+  month: one
 
 two:
   name: MyString
-  payday: 
+  payday_cents: 1
   payday_date: 2020-06-02 20:38:49
   user: two
+  month: two

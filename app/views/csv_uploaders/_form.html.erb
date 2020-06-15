@@ -1,0 +1,33 @@
+<%= form_with(model: csv_uploader, local: true) do |form| %>
+  <% if csv_uploader.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(csv_uploader.errors.count, "error") %> prohibited this csv_uploader from being saved:</h2>
+
+      <ul>
+        <% csv_uploader.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :month_id, "Select Month" %>
+    <%= form.collection_select :month_id, @months, :id, :month_year, class: "form-control"%>
+
+  </div>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :csvbank, "CSV File Uploader"%>
+    <%= form.file_field :csvbank, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit class: "btn btn-dark"%>
+  </div>
+<% end %>

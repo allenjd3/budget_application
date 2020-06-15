@@ -1,15 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
-  planned_cents: 1
-  user: one
-  category: one
   month: one
+  name: MyString
 
 two:
-  name: MyString
-  planned_cents: 1
-  user: two
-  category: two
   month: two
+  name: MyString

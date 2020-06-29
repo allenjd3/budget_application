@@ -12,7 +12,21 @@ class CsvUploadersController < ApplicationController
   # GET /csv_uploaders/1
   # GET /csv_uploaders/1.json
   def show
-    url_for(CsvUploader.find(params[:id]).csvbank)  
+    @csvheaders = CSV.parse(CsvUploader.find(params[:id]).csvbank.download)[0] 
+
+  end
+
+  def add_transactions
+    @csvbanks = CSV.parse(CsvUploader.find(params[:id]).csvbank.download)
+    @listofthings = []
+    #@csvbanks.each do |csv|
+    #  @listofthings.push(csv[params[:description]])
+    #end
+    @listofthings.push("hello")
+    @listofthings
+
+
+
   end
 
   # GET /csv_uploaders/new
@@ -26,7 +40,7 @@ class CsvUploadersController < ApplicationController
   end
 
   # POST /csv_uploaders
-  # POST /csv_uploaders.json
+  # POST /csv_uploaders.json def create
   def create
     @csv_uploader = CsvUploader.new(csv_uploader_params)
 

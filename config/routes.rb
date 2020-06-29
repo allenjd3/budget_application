@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   devise_for :users 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/category_items", to: "category_item#index"
+  get "/add_transactions", to: "csv_uploaders#add_transactions"
   get "/month/:month/year/:year", to: "category_item#month", as: "get_month"
   get "/cp", to: "category_item#cp", as: "control_panel"
   match "/search-month", to: "category_item#search", via: :post

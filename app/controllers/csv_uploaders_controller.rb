@@ -17,16 +17,7 @@ class CsvUploadersController < ApplicationController
   end
 
   def add_transactions
-    @csvbanks = CSV.parse(CsvUploader.find(params[:id]).csvbank.download)
-    @listofthings = []
-    #@csvbanks.each do |csv|
-    #  @listofthings.push(csv[params[:description]])
-    #end
-    @listofthings.push("hello")
-    @listofthings
-
-
-
+    @csvbanks = CSV.parse(CsvUploader.find(params[:id]).csvbank.download, headers: true)
   end
 
   # GET /csv_uploaders/new

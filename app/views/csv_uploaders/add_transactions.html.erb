@@ -1,3 +1,14 @@
-<div>
-my page
-</div>
+  <div class="category">
+    <h2 class="category-title">Proposed Transactions</h2>
+    <% @csvbanks.each do |csv| %>
+      <div class="card font-weight-bold my-2">
+        <div class="card-body d-flex">
+          <div class="flex-grow-1"><%= csv[params[:description]] %></a></div>
+          <div class="text-info mr-2"><%= csv[params[:date]] %></div>
+            <div class="text-danger">
+              $ <%= csv[params[:amount]]%>
+            </div>
+        </div>
+      </div>
+    <% end %>
+  </div>

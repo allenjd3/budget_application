@@ -15,11 +15,19 @@
   </p>
   <div class="card">
     <div class="card-body">
-      <%= form_with url: "/add_transactions", method: "get" do |form| %>
+      <%= form_with url: "/add_transactions", method: "post", :local => {remote: false} do |form| %>
       <div class="form-group">
         <%= form.label :description %>
         <%= form.text_field :description, class: "form-control"%>
       </div>
+        <div class="form-group">
+          <%= form.label :amount %>
+          <%= form.text_field :amount, class: "form-control"%>
+        </div>
+        <div class="form-group">
+          <%= form.label :date %>
+          <%= form.text_field :date, class: "form-control"%>
+        </div>
       <%= form.hidden_field :id, value: params[:id] %>
 
       <%= form.submit class: "btn btn-info"%>
